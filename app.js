@@ -75,8 +75,9 @@ const settingsRouter = require("./routes/settings.js");
 app.use("/api", settingsRouter);
 
 // AFTER your routes -> send the Angular HTML (instead of 404)
-// app.use((req, res, next) => {
-//   res.sendFile(`${__dirname}/public/index.html`);
-// });
+// uncommented to avoid 404 on refresh
+app.use((req, res, next) => {
+   res.sendFile(`${__dirname}/public/index.html`);
+});
 
 module.exports = app;
