@@ -32,11 +32,14 @@ const debug = require("debug")(
 );
 
 const app = express();
-app.use(function(request, response){
-  if(request.protocol === "http"){
-    response.redirect("https://" + request.headers.host + request.url);
+app.use(function(req, res, next){
+  if(req.header('x-forwarded-proto') !== 'https'){
+    res.redirect('https://' + req.header('host') + req.url);
+  }else{
+    next();
   }
-});
+})
+
 
 // Middleware Setup
 app.use(logger("dev"));
