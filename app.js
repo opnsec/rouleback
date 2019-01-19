@@ -32,6 +32,7 @@ const debug = require("debug")(
 );
 
 const app = express();
+if(process.env.ENV != "development"){
 app.use(function(req, res, next){
   if(req.header('x-forwarded-proto') !== 'https'){
     res.redirect('https://' + req.header('host') + req.url);
@@ -39,6 +40,7 @@ app.use(function(req, res, next){
     next();
   }
 })
+}
 
 
 // Middleware Setup
@@ -46,6 +48,11 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.get('/', function(req, res){
+  res.sendfile('index.html', { root: path.join(__dirname, "public/landing") } );
+});
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
