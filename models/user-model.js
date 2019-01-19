@@ -12,7 +12,7 @@ const userSchema = new Schema(
       unique: true,
       match: /^.+@.+\..+$/
     },
-    phoneNumber: { type: String, required: true },
+    phoneNumber: { type: String },
     isDriver: { type: Boolean, required: true },
     encryptedPassword: { type: String },
     pictureURL: {
