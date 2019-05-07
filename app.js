@@ -60,7 +60,8 @@ app.use(
     //receive cookies from other domains
     credentials: true,
     // these are the domains I want cookies (or any request) from
-    origin: ["http://localhost:4200"]
+    //origin: ["http://localhost:4200"]
+    origin: ["http://localhost:4100"]
   })
 );
 

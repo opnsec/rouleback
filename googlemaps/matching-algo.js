@@ -1,5 +1,5 @@
 var googleMapsClient = require("@google/maps").createClient({
-  key: "***REMOVED***",
+  key: process.env.GOOGLE_MAP_API_KEY,
   Promise: Promise
 });
 
